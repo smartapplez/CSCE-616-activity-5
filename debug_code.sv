@@ -19,3 +19,13 @@ task buggy_driver(htax_packet_c pkt);
         @(posedge htax_tx_intf.clk);
     end
 endtask
+
+
+/*
+Bug 1: htax_tx_intf.tx_outport_req is a bit field, but pkt.dest_port is an int
+
+Bug 2: tx_sot is supposed to be one hot, but multiple vc channels may receive grants
+at once, so tx_vc_gnt may not be one hot.
+
+Bug 3: 
+*/
