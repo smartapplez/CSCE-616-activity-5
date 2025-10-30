@@ -1,0 +1,5 @@
+Why must tx_outport_req and tx_vc_req be deasserted after receiving the grant?
+When the tx_outport req and tx_vc_req (requests) has been granted, then it has to be deasserted or else the module will interpret this as dealing with another grant, but it is now requesting the same outport and vc, which is illegal according to the specifications.
+
+What happens if you forget to assert tx_eot on the last data beat?
+If you forget to assert tx_eot on the last data beat, then the HTAX module will still believe that the data transaction is still active and will keep transmitting zeroes to the other device. When a request is asserted with the ports that it is using, then it won't be able to grant that because the ports are still currently busy

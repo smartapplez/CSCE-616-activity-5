@@ -1,14 +1,14 @@
 task drive_simple_packet(htax_packet_c pkt);
     // TODO 1: Request the outport (one-hot encoding from pkt.dest_port)
-    htax_tx_intf.tx_outport_req = /* YOUR CODE */;
+    htax_tx_intf.tx_outport_req = $onehot(pkt.dest_port);
     
     // TODO 2: Request the virtual channel
-    htax_tx_intf.tx_vc_req = /* YOUR CODE */;
+    htax_tx_intf.tx_vc_req = pkt.vc;
     
     @(posedge htax_tx_intf.clk);
     
     // TODO 3: Wait for grant using a while loop
-    while(/* YOUR CONDITION */) begin
+    while() begin
         @(posedge htax_tx_intf.clk);
     end
     
